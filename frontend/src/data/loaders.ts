@@ -1,5 +1,4 @@
 import { flattenAttributes, getStrapiURL } from "@/lib/utils";
-import { unstable_noStore as noStore } from "next/cache";
 import qs from "qs";
 
 const baseUrl = getStrapiURL();
@@ -25,7 +24,6 @@ async function fetchData(url: string) {
 }
 
 export const getHomePageData = async () => {
-	noStore();
 	const url = new URL("/api/home-page", baseUrl);
 	url.search = qs.stringify({
 		populate: {
@@ -49,7 +47,6 @@ export const getHomePageData = async () => {
 };
 
 export const getGlobalPageData = async () => {
-	noStore();
 	const url = new URL("/api/global", baseUrl);
 	url.search = qs.stringify({
 		populate: ["header.logoText", "header.ctaButton", "footer.logoText", "footer.socialLink"],
